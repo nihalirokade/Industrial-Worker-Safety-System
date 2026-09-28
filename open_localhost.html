@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AEGIS-SAFE — Industrial AI Operations Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0E1520;
+      --secondary: #940D7E;
+      --tertiary: #D9077E;
+      --neutral: #1E444B;
+      --bg-page: #EBF8FA;
+      --cyan-tint: #D5F5F8;
+      --cyan-border: #CCEBF0;
+      --pink-tint: #FDE8F3;
+      --pink-border: #F7BFE0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-page);
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(213, 245, 248, 0.8) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(253, 232, 243, 0.6) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(217, 7, 126, 0.04) 0%, transparent 60%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      padding: 1.5rem;
+    }
+    .launcher-card {
+      background: #FFFFFF;
+      border: 2px solid var(--cyan-border);
+      box-shadow: 0 20px 60px rgba(14, 21, 32, 0.08);
+      border-radius: 2rem;
+      max-width: 620px;
+      width: 100%;
+      padding: 2.75rem 2.25rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .top-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--tertiary);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--cyan-tint);
+      color: var(--neutral);
+      border: 1px solid var(--cyan-border);
+      border-radius: 9999px;
+      padding: 0.4rem 1rem;
+      font-size: 0.72rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--tertiary);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.85); }
+    }
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    p.sub {
+      color: var(--neutral);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 1.75rem;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--tertiary);
+      color: #FFFFFF;
+      text-decoration: none;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 800;
+      font-size: 1.05rem;
+      padding: 0.95rem 1.75rem;
+      border-radius: 1rem;
+      border: none;
+      box-shadow: 0 6px 22px rgba(217, 7, 126, 0.35);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    .btn-primary:hover {
+      background: #b00566;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(217, 7, 126, 0.45);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      background: var(--cyan-tint);
+      color: var(--primary);
+      text-decoration: none;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 1rem;
+      border: 1px solid var(--cyan-border);
+      transition: all 0.2s ease;
+      cursor: pointer;
+      width: 100%;
+    }
+    .btn-secondary:hover {
+      background: #bcebf1;
+      transform: translateY(-1px);
+    }
+    .tech-specs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--cyan-border);
+      text-align: left;
+    }
+    .tech-spec-item {
+      background: var(--bg-page);
+      border: 1px solid var(--cyan-border);
+      border-radius: 0.85rem;
+      padding: 0.65rem 0.85rem;
+    }
+    .tech-spec-item .label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--neutral);
+      font-weight: 700;
+      text-transform: uppercase;
+      display: block;
+    }
+    .tech-spec-item .val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: var(--primary);
+      font-weight: 800;
+      margin-top: 0.15rem;
+      display: block;
+    }
+    .footer-ticker {
+      margin-top: 1.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--neutral);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <div class="launcher-card">
+    <div class="top-accent"></div>
+    <div class="badge">
+      <span class="dot"></span>
+      <span>ISO-26262 ASIL-D · SYSTEM READY</span>
+    </div>
+    <h1>AEGIS-SAFE Operations</h1>
+    <p class="sub">
+      Industrial Worker Cognitive Surveillance & Predictive Error Prevention Portal
+    </p>
+
+    <a href="http://localhost:5173" class="btn-primary" target="_blank">
+      <span>Open Live Web App (localhost:5173)</span>
+      <span>→</span>
+    </a>
+
+    <a href="local_app.html" class="btn-secondary">
+      <span>Open Standalone Local Browser App</span>
+      <span>↗</span>
+    </a>
+
+    <div class="tech-specs">
+      <div class="tech-spec-item">
+        <span class="label">Architecture</span>
+        <span class="val">Tri-Modal AI</span>
+      </div>
+      <div class="tech-spec-item">
+        <span class="label">Color System</span>
+        <span class="val" style="color: var(--tertiary);">ASIL-D Neon</span>
+      </div>
+      <div class="tech-spec-item">
+        <span class="label">Typography</span>
+        <span class="val">Manrope/Inter</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-ticker">
+    FRAME CLOCK: 2048.00 HZ · ACTIVE PROTOCOL: ASIL-D REVISED · BUFFER: NOMINAL
+  </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "appId": "com.aegissafe.workerapp",
+  "appName": "AEGIS-SAFE",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https",
+    "cleartext": true
+  }
+}
